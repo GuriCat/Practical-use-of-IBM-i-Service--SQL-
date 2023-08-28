@@ -82,12 +82,12 @@ java -jar C:\Users\%USERNAME%\IBM\ClientSolutions\acsbundle.jar /SYSTEM=(IBM i�
 * SQLスクリプトで「ファイル(F)」→「別名保管」→「IFSストリーム・ファイル」で「*.sql」をIFSの任意のディレクトリーに保管し、RUNSQLSTMコマンドで利用。ただしRUNSQLSTMコマンドの制約により、SELECT文は副照会に、出力をファイルやスプールに指定する、などの変更が必要
 
 (元のSQLスクリプト例)
-```
+```sql
 SELECT * FROM TABLE(QSYS2.JOB_INFO(JOB_TYPE_FILTER => '*INTERACT')) X;
 ```
 
 (変更後のSQLスクリプト例)
-```
+```sql
 DECLARE GLOBAL TEMPORARY TABLE SESSION.INTJOB AS
       (SELECT * FROM TABLE(QSYS2.JOB_INFO(JOB_TYPE_FILTER => '*INTERACT')) X)
       WITH DATA INCLUDING DEFAULTS
@@ -184,7 +184,7 @@ SQLスクリプトにソースコードが挿入されます。このソース�
 
 UDTFは指定したスキーマ(ライブラリー)に*SRVPGMとして作成されます。UDTF名とIBM iオブジェクト名(*SRVPGM)の関連は、例えば下記のようなSQLで調査できます。
 
-```
+```sql
 SELECT SPECIFIC_SCHEMA, SPECIFIC_NAME, ROUTINE_NAME, EXTERNAL_NAME FROM QSYS2.SYSFUNCS WHERE ROUTINE_SCHEMA = 'LMSVxxLIB'
 ```
 
@@ -192,7 +192,7 @@ SELECT SPECIFIC_SCHEMA, SPECIFIC_NAME, ROUTINE_NAME, EXTERNAL_NAME FROM QSYS2.SY
 
 DBCS対応部分を合わせて記載しており、「↾↾↾↾」は変更行、「++++」は追加行を示します。
 
-```
+```sql
 0001 --  SQLの生成
 0002 --  バージョン:                   	V7R4M0 190621
 0003 --  生成:              	21/01/06 13:43:07
