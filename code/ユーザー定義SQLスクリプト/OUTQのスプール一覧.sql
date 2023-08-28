@@ -1,0 +1,6 @@
+﻿--  category:  IBM i サービス基本機能
+--  description:  OUTQのスプール一覧
+SELECT *
+  FROM QSYS2.OUTPUT_QUEUE_ENTRIES_BASIC
+  WHERE OUTPUT_QUEUE_NAME = 'QDKT'
+        AND OUTPUT_QUEUE_LIBRARY_NAME = 'QGPL'
